@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "david-home-automation"
-version = "0.1.8"
+version = "0.1.9"
 description = ""
 authors = ["David Gengenbach <info@davidgengenbach.de>"]
 

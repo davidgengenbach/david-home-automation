@@ -16,4 +16,4 @@ git commit -am "Bump version to $TAG"
 git push
 
 git tag $TAG
-git push $TAG
+git push origin $TAG
