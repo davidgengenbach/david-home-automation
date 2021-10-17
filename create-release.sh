@@ -11,6 +11,9 @@ fi
 poetry version patch
 TAG=$(poetry version --short)
 
+# Replace the version in the pip install command
+sed -i -e "s|\(david-home-automation==\).*|\1$TAG|g" README.md
+
 git add .
 git commit -am "Bump version to $TAG"
 git tag $TAG
