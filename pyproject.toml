@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "david-home-automation"
-version = "0.1.21"
+version = "0.1.22"
 description = ""
 authors = ["David Gengenbach <info@davidgengenbach.de>"]
 readme = "README.md"

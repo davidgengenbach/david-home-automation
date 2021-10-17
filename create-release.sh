@@ -18,4 +18,4 @@ git add .
 git commit -am "Bump version to $TAG"
 git tag $TAG
 
-git push --atomic origin $TAG
+git push
