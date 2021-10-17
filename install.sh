@@ -7,12 +7,16 @@ PACKAGE_NAME="david-home-automation==${VERSION}"
 
 THIS_DIR="$(pwd -P)"
 
-pip3 install $PACKAGE_NAME
+sudo pip3 install $PACKAGE_NAME
 
 sudo ln -s $HOME/.local/bin/eq3.exp /usr/bin || true
 
-cp home_automation.service ~/.config/systemd/user/home_automation.service
-systemctl --user daemon-reload
-systemctl --user enable home_automation.service
-systemctl --user restart home_automation.service
-systemctl --user status home_automation.service
+sudo cp home_automation.service /etc/systemd/system/home_automation.service
+sudo systemctl daemon-reload
+sudo systemctl enable home_automation.service
+sudo systemctl restart home_automation.service
+sudo systemctl status home_automation.service
+
+ROOT_HOME="$(sudo bash -c 'echo $HOME')"
+ROOT_CONFIG_PATH="${ROOT_HOME}/.config/david-home-automation.yaml"
+echo "IMPORTANT: the server was installed SYSTEMWIDE which means you have to create a config at ${ROOT_CONFIG_PATH}"
