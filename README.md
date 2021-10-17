@@ -2,7 +2,7 @@
 
 ## Installation
 ```
-pip3 install david-home-automation==0.1.12
+pip3 install david-home-automation==0.1.13
 (sudo apt install --yes expect && cd $(mktemp -d) && git clone https://github.com/Heckie75/eQ-3-radiator-thermostat.git x && cd x && cp eq3.exp $HOME/.local/bin)
 # Run server
 FLASK_APP=david_home_automation.main flask run --host=0.0.0.0 --port 5050
