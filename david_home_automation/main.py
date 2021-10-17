@@ -65,3 +65,10 @@ def wake_up_host():
         send_magic_packet(host.mac_address)
         time.sleep(0.5)
     return jsonify(dict())
+
+
+if __name__ == '__main__':
+    app.run(
+        host=os.environ.get('FLASK_PORT'),
+        port=os.environ.get('FLASK_PORT')
+    )

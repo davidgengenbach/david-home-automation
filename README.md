@@ -41,4 +41,11 @@ sudo apt install --yes supervisor
 ./install.sh
 
 # killall supervisord; supervisord -c /etc/supervisord.conf
+
+TMP_FILE="$(mktemp)"
+sed -e "s|FLASK_EXECUTABLE|$(which flask)|g" home_automation.service > $TMP_FILE
+cp "${TMP_FILE}" ~/.config/systemd/user/home_automation.service
+systemctl --user daemon-reload
+systemctl --user start home_automation.service
+systemctl --user status home_automation.service
 ```
