@@ -2,7 +2,7 @@
 Description=Home automation
 
 [Service]
-ExecStart=FLASK_EXECUTABLE run --host=0.0.0.0 --port 5000
+ExecStart=python3 -m david_home_automation.main --host=0.0.0.0 --port 5000
 Restart=always
 Environment=FLASK_APP=david_home_automation.main
 

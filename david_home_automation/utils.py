@@ -14,6 +14,7 @@ def get_config(config_file: typing.Optional[str] = None):
     if not config_file:
         config_file = os.environ.get(ENV_CONFIG_VARIABLE_NAME, DEFAULT_CONFIG)
     try:
+        config_file = os.path.expanduser(config_file)
         with open(config_file) as f:
             config = yaml.load(f, Loader=yaml.Loader)
         # ToDo: this should be done automatically by PyYaml
