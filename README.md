@@ -1,11 +1,14 @@
 # Home automation
 
 ## Installation
-```
+```shell
 pip3 install david-home-automation==0.1.14
 (sudo apt install --yes expect && cd $(mktemp -d) && git clone https://github.com/Heckie75/eQ-3-radiator-thermostat.git x && cd x && cp eq3.exp $HOME/.local/bin)
 
-# Create your config once
+# (Optional) find your thermostat MACs via
+bluetoothctl devices
+
+# Create your config once 
 cat > ~/.config/david-home-automation.yaml <<EOF
 thermostats:
   - mac_address: XX:XX:XX:XX:XX:XX
