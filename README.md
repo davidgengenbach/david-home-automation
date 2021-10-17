@@ -36,11 +36,6 @@ FLASK_ENV=development FLASK_APP=david_home_automation/main poetry run flask run 
 ## As a service
 
 ```shell
-sudo apt install --yes supervisor
-./install.sh
-
-# killall supervisord; supervisord -c /etc/supervisord.conf
-
 cp home_automation.service ~/.config/systemd/user/home_automation.service
 systemctl --user daemon-reload
 systemctl --user start home_automation.service

@@ -8,15 +8,10 @@ REMOTE_FOLDER=${2:-home-automation}
 main() {
   (sync)
   (install)
-  (restart_supervisord)
 }
 
 install() {
   ssh $HOST "cd $REMOTE_FOLDER; ./install.sh"
-}
-
-restart_supervisord() {
-  ssh $HOST "killall supervisord; supervisord -c /etc/supervisord.conf"
 }
 
 sync() {
