@@ -1,3 +1,7 @@
+[v-cloak] {
+  display: none;
+}
+
 .container {
     max-width: 500px !important;
 }
