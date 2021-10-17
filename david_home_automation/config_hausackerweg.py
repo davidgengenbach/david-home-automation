@@ -12,6 +12,10 @@ CONFIG = Config(
         ),
     ],
     wake_on_lan=[
-        Host(name='Desktop', mac_address='08:60:6e:e6:04:97', broadcast_ip='192.168.178.1')
+        Host(
+            name='Desktop',
+            mac_address='08:60:6e:e6:04:97',
+            broadcast_ip='192.168.178.1'
+        )
     ]
 )
