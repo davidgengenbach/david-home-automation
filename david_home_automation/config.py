@@ -20,11 +20,11 @@ class BluetoothThermostat(object):
 
 @dataclass
 class Config(object):
-    wake_on_lan: typing.List[Host]
+    hosts: typing.List[Host]
     thermostats: typing.List[BluetoothThermostat]
 
     def get_host_by_name(self, name: str) -> typing.Optional[Host]:
-        return self._get_by('wake_on_lan', name)
+        return self._get_by('hosts', name)
 
     def get_thermostat_by_name(self, name: str) -> typing.Optional[BluetoothThermostat]:
         return self._get_by('thermostats', name)

@@ -1,24 +1,14 @@
 import os
 import time
-import typing
 
 from flask import Flask, request, jsonify, send_from_directory
 from wakeonlan import send_magic_packet
 
-from david_home_automation.config import Host
-from david_home_automation.config_hausackerweg import CONFIG
+from david_home_automation import utils
 
 app = Flask(__name__)
 
-# eq3_exp_executable = '/usr/bin/eq3.exp'
-eq3_exp_executable = 'eq3.exp'
-
-
-def get_host_by_name(name: str) -> typing.Optional[Host]:
-    for host in CONFIG.wake_on_lan:
-        if host.name == name:
-            return host
-    return None
+CONFIG = utils.get_config()
 
 
 @app.route("/")
@@ -31,14 +21,9 @@ def static_files(path):
     return send_from_directory('static', path)
 
 
-@app.route("/api/thermostats", methods=['GET'])
-def list_thermostats():
-    return jsonify(CONFIG.thermostats)
-
-
-@app.route("/api/hosts", methods=['GET'])
-def list_hosts():
-    return jsonify(CONFIG.wake_on_lan)
+@app.route("/api/config", methods=['GET'])
+def get_config():
+    return jsonify(CONFIG)
 
 
 @app.route("/api/thermostats/change-temperature", methods=['POST'])
@@ -72,7 +57,7 @@ def change_thermostat_to_automatic():
 def wake_up_host():
     body = request.get_json(force=True)
     name = body.get('name')
-    host = get_host_by_name(name)
+    host = CONFIG.get_host_by_name(name)
     if not name or not host:
         return dict(error='invalid name'), 400
     # Retry once or twice

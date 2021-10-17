@@ -3,17 +3,14 @@
         el: '#app',
         data(){
         return {
-                message: 'Yeah!',
-                hosts: null,
-                thermostats: null,
+                config: {},
                 defaultTemperatures: [5, 20, 25]
             }
         },
         async mounted() {
-            this.hosts = (await axios.get('/api/hosts')).data;
-            this.thermostats = (await axios.get('/api/thermostats')).data;
+            this.config = (await axios.get('/api/config')).data;
             // https://stackoverflow.com/a/55379279
-            this.thermostats.forEach(t => this.$set(t, 'temperature', 22));
+            this.config.thermostats.forEach(t => this.$set(t, 'temperature', 22));
          },
         methods: {
             wakeupHost: (name) => {
