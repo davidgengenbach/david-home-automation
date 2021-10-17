@@ -17,5 +17,5 @@ sed -i -e "s|\(david-home-automation==\).*|\1$TAG|g" README.md
 git add .
 git commit -am "Bump version to $TAG"
 git tag $TAG
-git push
-git push origin $TAG
+
+git push --atomic origin $TAG
