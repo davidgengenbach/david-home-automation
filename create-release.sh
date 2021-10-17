@@ -8,7 +8,8 @@ if ! git status --porcelain; then
 fi
 
 # Increase version
-TAG=$(poetry version patch)
+poetry version patch
+TAG=$(poetry version --short)
 
 git add .
 git commit -am "Bump version to $TAG"
