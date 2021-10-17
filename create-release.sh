@@ -13,7 +13,6 @@ TAG=$(poetry version --short)
 
 git add .
 git commit -am "Bump version to $TAG"
-git push
-
 git tag $TAG
+git push
 git push origin $TAG

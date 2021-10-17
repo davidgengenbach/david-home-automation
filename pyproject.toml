@@ -3,6 +3,7 @@ name = "david-home-automation"
 version = "0.1.10"
 description = ""
 authors = ["David Gengenbach <info@davidgengenbach.de>"]
+readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.7"
