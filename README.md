@@ -2,7 +2,7 @@
 
 ## Installation
 ```shell
-pip3 install david-home-automation==0.1.27
+pip3 install david-home-automation==0.1.28
 (sudo apt install --yes expect && cd $(mktemp -d) && git clone https://github.com/Heckie75/eQ-3-radiator-thermostat.git x && cd x && cp eq3.exp $HOME/.local/bin)
 
 # (Optional) find your thermostat MACs via
