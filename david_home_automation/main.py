@@ -1,4 +1,3 @@
-import os
 import time
 
 from flask import Flask, request, jsonify, send_from_directory
@@ -38,8 +37,8 @@ def change_thermostat_temperature():
     except:
         return dict(error='could not parse temperature'), 400
 
-    os.system(thermostat.eq3_cmd(f'temp {temperature:.1f}'))
-    return jsonify(dict())
+    response = thermostat.execute_eq3_cmd(f'temp {temperature:.1f}')
+    return jsonify(dict(message=response))
 
 
 @app.route("/api/thermostats/change-to-automatic", methods=['POST'])
@@ -49,8 +48,8 @@ def change_thermostat_to_automatic():
     thermostat = CONFIG.get_thermostat_by_name(name)
     if not name or not thermostat:
         return dict(error='invalid name'), 400
-    os.system(thermostat.eq3_cmd(f'auto'))
-    return jsonify(dict())
+    response = thermostat.execute_eq3_cmd(f'auto')
+    return jsonify(dict(message=response))
 
 
 @app.route("/api/wake-on-lan", methods=['POST'])
@@ -61,7 +60,7 @@ def wake_up_host():
     if not name or not host:
         return dict(error='invalid name'), 400
     # Retry once or twice
-    for _ in range(4):
+    for _ in range(2):
         send_magic_packet(host.mac_address)
         time.sleep(0.5)
     return jsonify(dict())
