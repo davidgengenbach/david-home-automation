@@ -36,8 +36,5 @@ FLASK_ENV=development FLASK_APP=david_home_automation/main poetry run flask run 
 ## As a service
 
 ```shell
-cp home_automation.service ~/.config/systemd/user/home_automation.service
-systemctl --user daemon-reload
-systemctl --user start home_automation.service
-systemctl --user status home_automation.service
+./install.sh
 ```

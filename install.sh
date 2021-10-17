@@ -2,7 +2,12 @@
 
 set -eux
 
+VERSION="$(poetry version --short)"
+PACKAGE_NAME="david-home-automation==${VERSION}"
+
 THIS_DIR="$(pwd -P)"
+
+pip3 install $PACKAGE_NAME
 
 sudo ln -s $HOME/.local/bin/eq3.exp /usr/bin || true
 
