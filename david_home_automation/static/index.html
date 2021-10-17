@@ -34,9 +34,8 @@
                                value="11">
                     </div>
                     <div class="column">
-                        <button class="button" @click="changeTemperature(thermostat)">Change to
-                            {{thermostat.temperature}}°
-                            C
+                        <button class="button" @click="changeTemperatureTo(thermostat.name, thermostat.temperature)">
+                            Change to {{thermostat.temperature}} °C
                         </button>
                     </div>
                 </div>

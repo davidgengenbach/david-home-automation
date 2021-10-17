@@ -27,19 +27,16 @@
             },
             changeTemperatureTo: (name, temperature) => {
                 changeTemperatureTo(name, temperature)
-            },
-            changeTemperature: (thermostat) => {
-                changeTemperatureTo(thermostat.name, thermostat.temperature)
             }
         }
     });
 
 
     function changeTemperatureTo(name, temperature) {
-                axios
-                  .post('/api/thermostats/change-temperature', {
-                    name: name,
-                    temperature: temperature
-                  })
-            }
+        axios
+          .post('/api/thermostats/change-temperature', {
+            name: name,
+            temperature: temperature
+          })
+    }
 })();
