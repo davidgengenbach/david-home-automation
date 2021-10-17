@@ -22,8 +22,7 @@ EOF
 # You can also pass your config file path via an env variable
 export HOME_AUTOMATION_CONFIG=your/path
 
-# Run server
-FLASK_APP=david_home_automation.main flask run --host=0.0.0.0 --port 5050
+python3 -m david_home_automation.server --server-host=0.0.0.0 --server-port 5000
 ```
 
 ## Development
