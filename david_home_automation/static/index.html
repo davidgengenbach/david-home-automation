@@ -10,15 +10,16 @@
 <section class="section" id="app">
     <div class="container" v-cloak>
         <h1 class="title is-2">Home automation</h1>
-        <hr>
 
         <div v-if="config.hosts && config.hosts.length">
             <h2 class="subtitle is-3">Wake on lan</h2>
             <div v-for="host in config.hosts">
                 <button class="button" @click="wakeupHost(host.name)">Wake up "{{host.name}}"</button>
             </div>
-            <hr/>
         </div>
+
+        <hr/>
+
         <div v-if="config.thermostats && config.thermostats.length">
             <h2 class="subtitle is-3">Thermostats</h2>
             <div class="box" v-for="thermostat in config.thermostats">
@@ -46,6 +47,9 @@
                     </button>
                     <button class="button" @click="changeToAutomatic(thermostat.name)">
                         Automatic
+                    </button>
+                    <button class="button" @click="enableBoost(thermostat.name)">
+                        Boost
                     </button>
                 </div>
             </div>

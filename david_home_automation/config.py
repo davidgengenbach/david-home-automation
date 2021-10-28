@@ -1,7 +1,9 @@
 import json
+import logging
 import subprocess
 import typing
 from dataclasses import dataclass
+from subprocess import CalledProcessError
 
 
 @dataclass
@@ -21,8 +23,15 @@ class BluetoothThermostat(object):
     def eq3_cmd(self, cmd):
         return f'eq3.exp {self.mac_address} {cmd}'
 
-    def execute_eq3_cmd(self, cmd):
-        return subprocess.check_output(f'{self.eq3_cmd(cmd)}'.split(' ')).decode('utf-8')
+    def execute_eq3_cmd(self, cmd, tries: int = 2):
+        whole_command = f'{self.eq3_cmd(cmd)}'.split(' ')
+        for x in range(tries):
+            try:
+                return subprocess.check_output(whole_command).decode('utf-8')
+            except CalledProcessError as e:
+                logging.error(f'Could not execute command: {whole_command}. Retrying', exc_info=e)
+        logging.error(f'Could not execute command: {whole_command}')
+        raise Exception(f'Command "{whole_command}" exited with non-zero code after {tries} tries')
 
     def get_temperature(self):
         if not self.status:

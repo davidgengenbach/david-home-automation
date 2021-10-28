@@ -37,8 +37,27 @@ def change_thermostat_temperature():
     except:
         return dict(error='could not parse temperature'), 400
 
-    response = thermostat.execute_eq3_cmd(f'temp {temperature:.1f}')
-    return jsonify(dict(message=response))
+    try:
+        response = thermostat.execute_eq3_cmd(f'temp {temperature:.1f}')
+        return jsonify(dict(message=response))
+    except Exception as e:
+        return jsonify(dict(message=str(e))), 500
+
+
+@app.route("/api/thermostats/set-boost", methods=['POST'])
+def set_thermostat_boost():
+    body = request.get_json(force=True)
+    name = body.get('name')
+    thermostat = CONFIG.get_thermostat_by_name(name)
+    # ToDo: a lot of duplication
+    if not name or not thermostat:
+        return dict(error='invalid name'), 400
+    enable_boost = body.get('enable', True)
+    try:
+        response = thermostat.execute_eq3_cmd('boost' if enable_boost else 'boost off')
+        return jsonify(dict(message=response))
+    except Exception as e:
+        return jsonify(dict(message=str(e))), 500
 
 
 @app.route("/api/thermostats/change-to-automatic", methods=['POST'])

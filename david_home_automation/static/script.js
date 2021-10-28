@@ -25,18 +25,22 @@
                     name: name
                   })
             },
+            enableBoost: (name) => {
+                axios
+                  .post('/api/thermostats/set-boost', {
+                    name: name
+                  })
+            },
             changeTemperatureTo: (name, temperature) => {
-                changeTemperatureTo(name, temperature)
+                axios
+                  .post('/api/thermostats/change-temperature', {
+                    name: name,
+                    temperature: temperature
+                  })
+                  .catch((error) => {
+                      console.log(this);
+                  });
             }
         }
     });
-
-
-    function changeTemperatureTo(name, temperature) {
-        axios
-          .post('/api/thermostats/change-temperature', {
-            name: name,
-            temperature: temperature
-          })
-    }
 })();
