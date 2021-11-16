@@ -17,7 +17,11 @@
         },
         methods: {
             getThermostatStati: function() {
-                this.request('/api/thermostats/status', null, 'get');
+                this
+                    .request('/api/thermostats/status', null, 'get')
+                    .then(response => {
+                        this.thermostatStatus = response.data;
+                    });
             },
             wakeupHost: function(name) {
                 this.request('/api/wake-on-lan', { name }, 'post');
@@ -39,7 +43,8 @@
                         data
                     })
                     .then((response) => {
-                        this.setDebugInfo(`code ${response.status}`, response)
+                        this.setDebugInfo(`code ${response.status}`, response);
+                        return response;
                     })
                     .catch((error) => {
                         this.setDebugInfo(error.message, error.response);
