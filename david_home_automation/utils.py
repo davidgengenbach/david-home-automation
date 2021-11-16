@@ -19,10 +19,13 @@ def get_config(config_file: typing.Optional[str] = None):
             config = yaml.load(f, Loader=yaml.Loader)
         # ToDo: this should be done automatically by PyYaml
         out = Config(thermostats=[], hosts=[])
-        for host in config.get('hosts', []):
-            out.hosts.append(Host(**host))
-        for thermostat in config.get('thermostats', []):
-            out.thermostats.append(BluetoothThermostat(**thermostat))
+        if config:
+            for host in config.get('hosts', []):
+                out.hosts.append(Host(**host))
+            for thermostat in config.get('thermostats', []):
+                out.thermostats.append(BluetoothThermostat(**thermostat))
+        else:
+            logging.warning(f"Could not parse config ({config_file}). Please read README.")
         return out
     except Exception as e:
         logging.error(f"Could not parse config {config_file}")
