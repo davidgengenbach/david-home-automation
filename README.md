@@ -24,6 +24,11 @@ export HOME_AUTOMATION_CONFIG=your/path
 
 python3 -m david_home_automation.server --server-host=0.0.0.0 --server-port 5000
 ```
+### Setup as a service
+
+```shell
+./install.sh
+```
 
 ### Setup eq3 bluetooth
 
@@ -39,10 +44,4 @@ A useful debugging tool is `btmon`.
 ```
 poetry install
 FLASK_ENV=development FLASK_APP=david_home_automation/main poetry run flask run --host=0.0.0.0 --port 5050
-```
-
-## As a service
-
-```shell
-./install.sh
 ```
