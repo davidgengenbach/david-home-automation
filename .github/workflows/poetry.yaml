@@ -1,7 +1,5 @@
 name: Build and publish
-on:
-  release:
-    types: [published]
+on: [create]
 
 #  david_home_automation-${poetry version --short}-py3-none-any.whl
 jobs:
