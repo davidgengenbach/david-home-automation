@@ -25,6 +25,13 @@ export HOME_AUTOMATION_CONFIG=your/path
 python3 -m david_home_automation.server --server-host=0.0.0.0 --server-port 5000
 ```
 
+### Setup eq3 bluetooth
+
+Follow [the eq3.exp guide](https://github.com/Heckie75/eQ-3-radiator-thermostat#3-pair-bluetooth) for pairing your thermostats.
+Make sure you do not connect/pair from multiple devices as the thermostats get easily confused.
+If you are encountering strange connection issues or crypted error messages from the API (and by extension also `eq3.exp`), reset your thermostats to factory settings (see manual).
+A useful debugging tool is `btmon`.
+
 ## Development
 
 - [Install poetry](https://python-poetry.org/docs/#osx--linux--bashonwindows-install-instructions)
