@@ -2,6 +2,7 @@ import time
 
 from flask import Flask, request, jsonify, send_from_directory
 from wakeonlan import send_magic_packet
+import json
 
 from david_home_automation import utils
 
@@ -9,6 +10,9 @@ app = Flask(__name__)
 
 CONFIG = utils.get_config()
 
+
+def error_to_response(e, status=500):
+    return jsonify(dict(message=str(e))), 500
 
 @app.route("/")
 def main():
@@ -23,6 +27,18 @@ def static_files(path):
 @app.route("/api/config", methods=['GET'])
 def get_config():
     return jsonify(CONFIG)
+
+
+@app.route("/api/thermostats/status", methods=['GET'])
+def thermostat_status():
+    try:
+        out = {}
+        for thermostat in CONFIG.thermostats:
+            jsons = json.loads(thermostat.execute_eq3_cmd('json'))
+            out[thermostat.name] = jsons
+        return jsonify(out)
+    except Exception as e:
+        return error_to_response(e)
 
 
 @app.route("/api/thermostats/change-temperature", methods=['POST'])
