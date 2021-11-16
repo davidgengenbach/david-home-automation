@@ -2,7 +2,7 @@
 
 ## Installation
 ```shell
-pip3 install david-home-automation==0.1.35
+pip3 install david-home-automation==0.1.36
 (sudo apt install --yes expect && cd $(mktemp -d) && git clone https://github.com/Heckie75/eQ-3-radiator-thermostat.git x && cd x && cp eq3.exp $HOME/.local/bin)
 
 # (Optional) find your thermostat MACs via
@@ -37,6 +37,7 @@ A useful debugging tool is `btmon`.
 - [Install poetry](https://python-poetry.org/docs/#osx--linux--bashonwindows-install-instructions)
 
 ```
+poetry install
 FLASK_ENV=development FLASK_APP=david_home_automation/main poetry run flask run --host=0.0.0.0 --port 5050
 ```
 
