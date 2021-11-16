@@ -21,6 +21,13 @@
             <hr />
             <div v-if="config.thermostats && config.thermostats.length">
                 <h2 class="subtitle is-3">Thermostats</h2>
+
+                <div class="box">
+                    <button class="button" @click="getThermostatStati()">
+                        Retrieve status
+                    </button>
+                </div>
+
                 <div class="box" v-for="thermostat in config.thermostats">
                     <h3 class="subtitle is-5">{{thermostat.name}}</h3>
                     <div class="columns">
@@ -45,12 +52,6 @@
                         </button>
                     </div>
                 </div>
-
-                <h3 class="subtitle is-4">Status</h3>
-                <button class="button" @click="getThermostatStati()">
-                    Refresh
-                </button>
-                <pre>{{thermostatStatus}}</pre>
             </div>
             <hr />
             <div>
