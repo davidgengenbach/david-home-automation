@@ -32,7 +32,7 @@
                     <h3 class="subtitle is-5">{{thermostat.name}}</h3>
                     <div class="columns">
                         <div class="column is-three-fifths">
-                            <input class="slider" type="range" v-model="thermostat.temperature" min="5" max="29.5" step="1" value="11">
+                            <input class="slider" type="range" v-model="thermostat.temperature" min="4.5" max="30" step="0.5" value="11">
                         </div>
                         <div class="column">
                             <button class="button" @click="changeTemperatureTo(thermostat.name, thermostat.temperature)">
