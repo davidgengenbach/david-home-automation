@@ -4,7 +4,7 @@
         data() {
             return {
                 config: {},
-                defaultTemperatures: [5, 20, 25],
+                defaultTemperatures: [4.5, 30],
                 responseMessage: null,
                 responseBody: null,
                 thermostatStatus: null
@@ -13,7 +13,7 @@
         async mounted() {
             this.config = (await axios.get('/api/config')).data;
             // https://stackoverflow.com/a/55379279
-            this.config.thermostats.forEach(t => this.$set(t, 'temperature', 24));
+            this.config.thermostats.forEach(t => this.$set(t, 'temperature', 30));
         },
         methods: {
             getThermostatStati: function() {
